@@ -1,5 +1,10 @@
 from patterns.csv_utils import Ride
+from patterns import save_file
 
+#Builder pattern 
+def build_web_report(rides):
+    html_report = create_content(rides)
+    save_file.create_file(html_report,"financial-report.html")
 
 def create_content(rides):
     builder = [_create_headers("Taxi Report"), _create_table_headers()]
@@ -8,12 +13,6 @@ def create_content(rides):
     builder.append(_close_table_headers())
 
     return "".join(builder)
-
-
-def create_file(content: str):
-    with open("financial-report.html", "w") as file:
-        file.write(content)
-
 
 def _create_headers(title: str):
     return f"<h1>{title}</h1>"
@@ -31,6 +30,7 @@ def _create_table_headers():
             <th> Total amount </th>
         </tr>
     """
+
 
 
 def _close_table_headers():
