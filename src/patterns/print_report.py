@@ -3,8 +3,8 @@ from patterns import save_file
 
 #Builder pattern 
 def build_print_report(rides):
-    txt_report = create_content(rides)
-    save_file.create_file(txt_report,"financial-report.txt")
+    #chain of responsibility pattern
+    save_file.create_file(create_content(rides),"financial-report.txt")
 
 def create_content(rides):
     builder = [_create_headers("Taxi Report"), _create_table_headers()]
